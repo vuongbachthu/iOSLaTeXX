@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'iOSLaTeXX_Example' do
+  pod 'iOSLaTeXX', :path => '../'
+
+  target 'iOSLaTeXX_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
