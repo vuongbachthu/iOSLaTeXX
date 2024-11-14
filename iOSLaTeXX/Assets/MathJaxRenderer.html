@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LaTeX iOS Renderer</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                    outline: 0;
+                    font-size: 100%;
+                    vertical-align: baseline;
+                    background: transparent;
+                }
+            
+                #latex-view {
+                    display: inline-block;
+                    min-height: 0px;
+                    min-width: 100%;
+                    overflow: hidden;
+                    white-space: pre-line;
+                }
+            </style>
+
+            <script type="text/javascript">
+                function renderLaTeX(str) {
+                    var latexDiv = document.getElementById('latex-view');
+                    latexDiv.innerHTML = str;
+                    MathJax.Hub.Queue(["Typeset",MathJax.Hub,latexDiv]);
+                }
+
+                function handleMathJaxSignal(signal) {
+                    if (signal == "Startup: End") {
+                        sendReadySignalToiOSApp();
+                    }
+
+                    if (signal == "Hub: End Process,[object HTMLDivElement]") {
+                        sendRenderCompletedSignalToiOSApp();
+                    }
+                }
+
+                function sendReadySignalToiOSApp() {
+                    try {
+                        webkit.messageHandlers.callbackHandler.postMessage('ready');
+                    } catch(err) {
+                        console.log('Sending Ready Signal to iOS App failed');
+                    }
+                }
+
+                function sendRenderCompletedSignalToiOSApp() {
+                    try {
+                        setTimeout(function () {
+                            var latexDiv = document.getElementById('latex-view');
+                            var width = latexDiv.clientWidth;
+                            var height = latexDiv.clientHeight;
+                            
+                            webkit.messageHandlers.callbackHandler.postMessage('{"height":' + height + ',"width":' + width + '}');
+                        }, 50);
+                    } catch(err) {
+                        console.log('Sending Render Completed Signal to iOS App failed');
+                    }
+                }
+            </script>
+
+             <script type="text/x-mathjax-config">
+                MathJax.Hub.Config({
+                    messageStyle: "none",
+                    tex2jax: {
+                        inlineMath: [ ['$','$'],['\\(','\\)'], ['[math]','[/math]'], ['[[m]]', '[[m]]']],
+                        displayMath: [ ['$$', '$$'] ]
+                    },
+                    TeX: {
+                        Macros: {
+                            textless: "{<}",
+                            textgreater: "{>}",
+                            textdegree: "˚"
+                        }
+                    },
+                    "HTML-CSS": { linebreaks: { automatic: true }}
+                });
+
+                MathJax.Hub.Startup.signal.Interest(
+                    function (message) {
+                        handleMathJaxSignal("Startup: "+message);
+                    }
+                );
+
+                MathJax.Hub.signal.Interest(
+                    function (message) {
+                        handleMathJaxSignal("Hub: "+message);
+                    }
+                );
+            </script>
+            
+            <script type="text/javascript" async src="mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full.js"></script>
+
+    </head>
+    
+    <body>
+        
+        <div id='latex-view'>
+        </div>
+        
+    </body>
+</html>

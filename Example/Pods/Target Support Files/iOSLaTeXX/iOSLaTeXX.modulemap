@@ -1,0 +1,6 @@
+framework module iOSLaTeXX {
+  umbrella header "iOSLaTeXX-umbrella.h"
+
+  export *
+  module * { export * }
+}
