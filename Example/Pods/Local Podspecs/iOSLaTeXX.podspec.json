@@ -1,6 +1,6 @@
 {
   "name": "iOSLaTeXX",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "summary": "iOS LaTeX Renderer written in Swift",
   "description": "iOSLaTeX provides a LaTeXRenderer which loads a minified version of MathJax in a WkWebView to render LaTeX into native UIImage objects",
   "homepage": "https://github.com/vuongbachthu/iOSLaTeXX",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/vuongbachthu/iOSLaTeXX.git",
-    "tag": "0.2.0"
+    "tag": "0.3.0"
   },
   "platforms": {
     "ios": "13.0"
