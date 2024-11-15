@@ -1,8 +1,8 @@
 {
   "name": "iOSLaTeXX",
-  "version": "0.1.0",
-  "summary": "iOSLaTeXX - Helps you easily handle LaTex in Swift IOS App, It is a Clone of iOSLaTeX",
-  "description": "iOSLaTeXX - Helps you easily handle LaTex in Swift IOS App, It is a Clone of iOSLaTeX, Because iOSLaTeX was deleted from GitHub by its owner, I remade a version to serve my applications.",
+  "version": "0.2.0",
+  "summary": "iOS LaTeX Renderer written in Swift",
+  "description": "iOSLaTeX provides a LaTeXRenderer which loads a minified version of MathJax in a WkWebView to render LaTeX into native UIImage objects",
   "homepage": "https://github.com/vuongbachthu/iOSLaTeXX",
   "license": {
     "type": "MIT",
@@ -13,14 +13,24 @@
   },
   "source": {
     "git": "https://github.com/vuongbachthu/iOSLaTeXX.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "platforms": {
     "ios": "13.0"
   },
   "swift_versions": [
-    "4.0"
+    "4.2"
   ],
   "source_files": "iOSLaTeXX/Classes/**/*",
-  "swift_version": "4.0"
+  "resource_bundles": {
+    "iOSLaTeXX": [
+      "iOSLaTeXX/Assets/*",
+      "iOSLaTeXX/External]/mathjax"
+    ]
+  },
+  "frameworks": [
+    "UIKit",
+    "WebKit"
+  ],
+  "swift_version": "4.2"
 }

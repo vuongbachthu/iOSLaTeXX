@@ -61,13 +61,13 @@ public class LaTeXRenderer: NSObject {
         self.webView.translatesAutoresizingMaskIntoConstraints = false
         
         self.parentView.addSubview(self.webView)
-        self.parentView.sendSubview(toBack: self.webView)
+        self.parentView.sendSubviewToBack(self.webView)
         
         if #available(iOS 11, *) {
             let guide = self.parentView.safeAreaLayoutGuide
             NSLayoutConstraint.activate([
-                self.webView.topAnchor.constraintEqualToSystemSpacingBelow(guide.topAnchor, multiplier: 1.0),
-                guide.bottomAnchor.constraintEqualToSystemSpacingBelow(self.webView.bottomAnchor, multiplier: 1.0),
+                self.webView.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+                guide.bottomAnchor.constraint(equalToSystemSpacingBelow: self.webView.bottomAnchor, multiplier: 1.0),
                 self.webView.leftAnchor.constraint(equalTo: self.parentView.leftAnchor, constant: 0),
                 self.webView.rightAnchor.constraint(equalTo: self.parentView.rightAnchor, constant: 0)
                 ])
@@ -107,8 +107,8 @@ public class LaTeXRenderer: NSObject {
             self.hidingView!.backgroundColor = parentView.backgroundColor
             self.parentView.addSubview(self.hidingView!)
             
-            self.parentView.sendSubview(toBack: self.hidingView!)
-            self.parentView.sendSubview(toBack: self.webView)
+            self.parentView.sendSubviewToBack(self.hidingView!)
+            self.parentView.sendSubviewToBack(self.webView)
             
             self.timeoutTimer?.invalidate()
             self.webView.stopLoading()

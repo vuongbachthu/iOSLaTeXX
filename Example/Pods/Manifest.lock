@@ -4,7 +4,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - iOSLaTeXX (0.1.0)
+  - iOSLaTeXX (0.2.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  iOSLaTeXX: d4ccae287c693b2d0562b5d4eb91ec5b3f6b1384
+  iOSLaTeXX: 4d1bb214cf5f83292e74e42f22ebaf9425c1d182
 
 PODFILE CHECKSUM: ca349f8288e791811a4c6f98e842bdf114f30d3b
 
